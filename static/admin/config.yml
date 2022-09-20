@@ -7,10 +7,42 @@ public_folder: /assets
 collections:
   - name: blog
     label: Blog
-    folder: blog
+    label_singular: Post
+    folder: content/blog
     create: true
+    delete: true
+    extension: markdown
+    format: frontmatter
+    slug: "{{slug}}"
+    preview_path: "blog/{{filename}}"
     fields:
-      - { name: path, label: Path }
-      - { name: date, label: Date, widget: datetime }
       - { name: title, label: Title }
+      - { name: description, label: Description, widget: text }
+      - { name: date, label: Publication Date, widget: datetime }
+      - { name: updated, label: Update Date, widget: datetime }
+      - name: image
+        label: Featured Image
+        widget: object
+        summary: "{{fields.src}}"
+        fields:
+          - { name: src, label: Image source, widget: image }
+          - { name: alt, label: Alt text, widget: string }
+          - { name: credit, label: Author of the image, widget: string }
+      - {
+          name: tags,
+          label: Tags,
+          widget: select,
+          multiple: true,
+          options:
+            [
+              "Web Development",
+              "Design",
+              "Computer Science",
+              "Data Science",
+              "Mathematics",
+            ],
+          default: ["Computer Science"],
+          min: 1,
+          max: 4,
+        }
       - { name: body, label: Body, widget: markdown }
