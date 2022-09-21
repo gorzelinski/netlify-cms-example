@@ -27,7 +27,12 @@ collections:
         fields:
           - { name: src, label: Image source, widget: image }
           - { name: alt, label: Alt text, widget: string }
-          - { name: credit, label: Author of the image, widget: string }
+          - {
+              name: credit,
+              label: Author of the image,
+              widget: string,
+              required: false,
+            }
       - {
           name: tags,
           label: Tags,
@@ -44,5 +49,6 @@ collections:
           default: ["Computer Science"],
           min: 1,
           max: 4,
+          required: false,
         }
       - { name: body, label: Body, widget: markdown }
